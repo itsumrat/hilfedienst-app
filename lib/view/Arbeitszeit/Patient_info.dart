@@ -45,7 +45,6 @@ class _PatinetInfoState extends State<PatinetInfo> {
                         index: 1,
                       ),
                   transition: Transition.rightToLeft);
-              print("click");
             },
             icon: const Icon(
               Icons.arrow_back_ios,
@@ -222,7 +221,7 @@ class _PatinetInfoState extends State<PatinetInfo> {
                         //     //     initialData: 0,
                         //     //     builder: (context, snap) {
                         //     //       final value = snap.data;
-                        //     //       print(value);
+                        //     //
                         //     //       final displayTime = StopWatchTimer.getDisplayTime(value!);
 
                         //     //     return Text("${displayTime.toString()}",
@@ -246,7 +245,7 @@ class _PatinetInfoState extends State<PatinetInfo> {
             onTap: () {
               Get.to(() => const Signeture(),
                   transition: Transition.rightToLeft);
-              print("object");
+
               setState(() {
                 _isStart = !_isStart;
               });

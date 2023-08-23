@@ -2,7 +2,9 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hilfedienst/app_theme.dart';
+import 'package:hilfedienst/view/index.dart';
 import 'package:hilfedienst/view/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SflashScreen extends StatefulWidget {
   const SflashScreen({Key? key}) : super(key: key);
@@ -14,12 +16,26 @@ class SflashScreen extends StatefulWidget {
 class _SflashScreenState extends State<SflashScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    Future.delayed(const Duration(milliseconds: 2000)).then((value) => Get.to(
-          () => const Login(),
-          transition: Transition.zoom,
-        ));
+    Future.delayed(
+      const Duration(milliseconds: 2000),
+      () async {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        if (prefs.containsKey("token")) {
+          Get.offAll(
+            () => const Index(
+              index: 0,
+            ),
+            transition: Transition.zoom,
+          );
+        } else {
+          Get.to(
+            () => const Login(),
+            transition: Transition.zoom,
+          );
+        }
+      },
+    );
   }
 
   @override
@@ -52,9 +68,7 @@ class _SflashScreenState extends State<SflashScreen> {
                     TyperAnimatedText('Hilfedienst'),
                   ],
                   totalRepeatCount: 1,
-                  onTap: () {
-                    print("Tap Event");
-                  },
+                  onTap: () {},
                 ),
               ),
             )

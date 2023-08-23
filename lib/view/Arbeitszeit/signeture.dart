@@ -68,7 +68,6 @@ class _SignetureState extends State<Signeture> {
                     alignment: Alignment.bottomRight,
                     child: TextButton(
                       onPressed: () {
-                        print("object");
                         signatureGlobalKey.currentState?.clear();
                       },
                       child: const Text("Clear"),
@@ -178,8 +177,6 @@ class _SignetureState extends State<Signeture> {
       if (image == null) return;
       final imageTemp = File(image.path);
       setState(() => this.image = imageTemp);
-    } on PlatformException catch (e) {
-      print('Failed to pick image: $e');
-    }
+    } on PlatformException catch (e) {}
   }
 }

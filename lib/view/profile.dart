@@ -14,18 +14,9 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getUserFuture = getUser();
-  }
-
-  var userData;
-  Future? getUserFuture;
   getUser() async {
     var res = await AuthController.profileController();
-    print("sataus code ${res.statusCode}");
+
     if (res.statusCode == 200) {
       return jsonDecode(res.body)[1];
     }
@@ -41,7 +32,7 @@ class _ProfileState extends State<Profile> {
               text: "Profile",
             )),
         body: FutureBuilder(
-          future: getUserFuture,
+          future: getUser(),
           builder: (context, AsyncSnapshot<dynamic> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(

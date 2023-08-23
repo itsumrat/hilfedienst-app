@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hilfedienst/app_theme.dart';
-import 'package:hilfedienst/patient_json.dart';
+import 'package:hilfedienst/view/Arbeitszeit/controller/arbeitszeit_controller.dart';
 import 'package:hilfedienst/view_controller/title_text.dart';
 
 import 'Patient_info.dart';
@@ -14,12 +14,7 @@ class Arbeitszeit extends StatefulWidget {
 }
 
 class _ArbeitszeitState extends State<Arbeitszeit> {
-  late String patient;
-  @override
-  void initState() {
-    super.initState();
-    patient = "Patient name";
-  }
+  final ArbeitzeitController controller = Get.put(ArbeitzeitController());
 
   @override
   Widget build(BuildContext context) {
@@ -76,34 +71,44 @@ class _ArbeitszeitState extends State<Arbeitszeit> {
               const SizedBox(
                 height: 20,
               ),
-              InkWell(
-                onTap: () {
-                  print("object");
-                  _showMyDialog();
-                },
-                child: Container(
-                  color: const Color(0xFFEFF2F7),
-                  child: ListTile(
-                    title: Text(
-                      patient,
-                      style: const TextStyle(fontSize: 17),
-                    ),
-                    leading: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: AppColors.white,
+              controller.obx(
+                (state) => InkWell(
+                  onTap: () {
+                    _showMyDialog();
+                  },
+                  child: Container(
+                    color: const Color(0xFFEFF2F7),
+                    child: ListTile(
+                      title: Obx(
+                        () => Text(
+                          controller.selectedPatient.value?.firstName ??
+                              "Select Patient",
+                          style: const TextStyle(fontSize: 17),
+                        ),
                       ),
-                      padding: const EdgeInsets.all(10),
-                      child: const Icon(
-                        Icons.person,
+                      leading: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: AppColors.white,
+                        ),
+                        padding: const EdgeInsets.all(10),
+                        child: const Icon(
+                          Icons.person,
+                          color: AppColors.black,
+                        ),
+                      ),
+                      trailing: const Icon(
+                        Icons.arrow_drop_down_outlined,
                         color: AppColors.black,
                       ),
                     ),
-                    trailing: const Icon(
-                      Icons.arrow_drop_down_outlined,
-                      color: AppColors.black,
-                    ),
                   ),
+                ),
+                onLoading: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                onError: (error) => const Center(
+                  child: Text("Error"),
                 ),
               ),
               const SizedBox(
@@ -294,7 +299,7 @@ class _ArbeitszeitState extends State<Arbeitszeit> {
                 ),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: PatientJson.patients.length,
+                    itemCount: controller.state?.length ?? 0,
                     itemBuilder: ((context, index) {
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -302,12 +307,12 @@ class _ArbeitszeitState extends State<Arbeitszeit> {
                         children: [
                           TextButton(
                               onPressed: () {
-                                setState(() {
-                                  patient = PatientJson.patients[index];
-                                });
-                                Navigator.pop(context);
+                                controller.selectedPatient.value =
+                                    controller.state?[index];
+                                Get.back();
                               },
-                              child: Text("${PatientJson.patients[index]}")),
+                              child: Text(
+                                  "${controller.state?[index].firstName} ${controller.state?[index].lastName}")),
                         ],
                       );
                     }),

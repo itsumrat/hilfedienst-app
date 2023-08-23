@@ -30,15 +30,16 @@ class _LoginState extends State<Login> {
     var res = await http.post(Uri.parse(AppConfig.LOGIN),
         body: {"user_name": email.text, "password": pass.text});
 
-    // print("object ${res.body}");
-    print("object ${res.statusCode}");
+    //
+
     if (res.statusCode == 200) {
       var data = jsonDecode(res.body);
-      print(data["0"]);
-      prefs.setString("token", data["token"]);
-      prefs.setString("user_id", data["0"]["id"].toString());
-      prefs.setString("first_name", data["0"]["first_name"].toString());
-      prefs.setString("last_name", data["0"]["last_name"].toString());
+
+      prefs.setString("token", data["access_token"]);
+      prefs.setString("user_data", jsonEncode(data["user_data"]));
+      prefs.setString("user_id", data["user_data"]["id"].toString());
+      prefs.setString("first_name", data["user_data"]["first_name"].toString());
+      prefs.setString("last_name", data["user_data"]["last_name"].toString());
 
       Get.to(
           () => const Index(
@@ -51,8 +52,8 @@ class _LoginState extends State<Login> {
 
   @override
   void initState() {
-    // TODO: implement initState
     _passwordVisible = false;
+    super.initState();
   }
 
   @override

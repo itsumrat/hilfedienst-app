@@ -33,7 +33,6 @@ class _IndexState extends State<Index> {
         currentPage = widget.index!;
       });
     }
-    print(currentPage);
   }
 
   @override
@@ -41,13 +40,12 @@ class _IndexState extends State<Index> {
     // TODO: implement initState
     super.initState();
     checkIndex();
-    print("index page $currentPage");
+
     titleCheck();
     isHome = true;
     isArbeitszeit = false;
     isBesuche = false;
     isMehr = false;
-    print("isArbeitszeit $isArbeitszeit");
   }
 
   bool isHome = false;
@@ -98,8 +96,6 @@ class _IndexState extends State<Index> {
         isMehr = false;
       });
     }
-
-    print(isHome);
   }
 
   @override
@@ -180,7 +176,7 @@ class _IndexState extends State<Index> {
         onTap: (index) {
           setState(() {
             currentPage = index;
-            print(currentPage);
+
             titleCheck();
           });
         },

@@ -1,4 +1,3 @@
-import 'package:month_picker_dialog_2/month_picker_dialog_2.dart';
 
 class AppConfig {
   static const String appName = "Hilfedienst";

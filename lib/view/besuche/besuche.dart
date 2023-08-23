@@ -1,11 +1,7 @@
-import 'package:filter_list/filter_list.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hilfedienst/app_theme.dart';
 import 'package:hilfedienst/view_controller/title_text.dart';
 import 'package:month_picker_dialog_2/month_picker_dialog_2.dart';
-
-import 'besuche_search.dart';
 
 class Besuche extends StatefulWidget {
   const Besuche({Key? key}) : super(key: key);
@@ -22,112 +18,112 @@ class _BesucheState extends State<Besuche> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TitleText(text: "Besuche"),
-              SizedBox(
+              const TitleText(text: "Besuche"),
+              const SizedBox(
                 height: 20,
               ),
               isSearch
                   ? Container(
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "Search",
-                        prefixIcon: Icon(Icons.search),
-                        suffixIcon: IconButton(
-                          onPressed: ()=>setState(() {
-                            isSearch = false;
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            hintText: "Search",
+                            prefixIcon: const Icon(Icons.search),
+                            suffixIcon: IconButton(
+                              onPressed: () => setState(() {
+                                isSearch = false;
+                              }),
+                              icon: const Icon(Icons.close),
+                            )),
+                      ),
+                    )
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () => showMonth(),
+                          child: Container(
+                            width: size.width / 2.1,
+                            padding: const EdgeInsets.only(
+                                left: 10, right: 10, top: 10, bottom: 10),
+                            decoration: BoxDecoration(
+                              color: Colors.grey.shade300,
+                            ),
+                            child: Center(
+                              child: Row(
+                                children: const [
+                                  Text(
+                                    "September 2022",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 17,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.arrow_drop_down_outlined,
+                                    size: 20,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            ShwoFillter();
+                          },
+                          child: Container(
+                            width: size.width / 4,
+                            padding: const EdgeInsets.only(
+                                left: 10, right: 10, top: 10, bottom: 10),
+                            decoration: BoxDecoration(
+                              color: Colors.grey.shade300,
+                            ),
+                            child: Center(
+                              child: Row(
+                                children: const [
+                                  Icon(
+                                    Icons.filter_list_outlined,
+                                    size: 20,
+                                  ),
+                                  Text(
+                                    "Filter",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () => setState(() {
+                            isSearch = true;
                           }),
-                          icon: Icon(Icons.close),
+                          child: Container(
+                            width: size.width / 8,
+                            padding: const EdgeInsets.only(
+                                left: 10, right: 10, top: 10, bottom: 10),
+                            decoration: BoxDecoration(
+                              color: Colors.grey.shade300,
+                            ),
+                            child: const Center(
+                              child: Icon(
+                                Icons.search,
+                                size: 20,
+                              ),
+                            ),
+                          ),
                         )
-                      ),
+                      ],
                     ),
-                 ) : Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    onTap: () => showMonth(),
-                    child: Container(
-                      width: size.width / 2.1,
-                      padding: EdgeInsets.only(
-                          left: 10, right: 10, top: 10, bottom: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade300,
-                      ),
-                      child: Center(
-                        child: Row(
-                          children: [
-                            Text(
-                              "September 2022",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 17,
-                              ),
-                            ),
-                            Icon(
-                              Icons.arrow_drop_down_outlined,
-                              size: 20,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      ShwoFillter();
-                    },
-                    child: Container(
-                      width: size.width / 4,
-                      padding: EdgeInsets.only(
-                          left: 10, right: 10, top: 10, bottom: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade300,
-                      ),
-                      child: Center(
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.filter_list_outlined,
-                              size: 20,
-                            ),
-                            Text(
-                              "Filter",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () => setState(() {
-                      isSearch = true;
-                    }),
-                    child: Container(
-                      width: size.width / 8,
-                      padding: EdgeInsets.only(
-                          left: 10, right: 10, top: 10, bottom: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade300,
-                      ),
-                      child: Center(
-                        child: Icon(
-                          Icons.search,
-                          size: 20,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Expanded(
@@ -150,7 +146,7 @@ class _BesucheState extends State<Besuche> {
   void ShwoFillter() {
     showModalBottomSheet(
         context: context,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
         ),
@@ -159,11 +155,11 @@ class _BesucheState extends State<Besuche> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
+              const Padding(
+                padding: EdgeInsets.all(20.0),
                 child: Text(
                   "Filter",
                   style: TextStyle(
@@ -172,8 +168,8 @@ class _BesucheState extends State<Besuche> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
+              const Padding(
+                padding: EdgeInsets.all(20.0),
                 child: Text(
                   "Booking type",
                   style: TextStyle(
@@ -189,55 +185,55 @@ class _BesucheState extends State<Besuche> {
                     Row(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(right: 10),
-                          padding: EdgeInsets.all(10),
+                          margin: const EdgeInsets.only(right: 10),
+                          padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                              color: appColors.mainColor.withOpacity(0.3),
+                              color: AppColors.mainColor.withOpacity(0.3),
                               borderRadius: BorderRadius.circular(40)),
-                          child: Text("Patient care"),
+                          child: const Text("Patient care"),
                         ),
                         Container(
-                          margin: EdgeInsets.only(right: 10),
-                          padding: EdgeInsets.all(15),
+                          margin: const EdgeInsets.only(right: 10),
+                          padding: const EdgeInsets.all(15),
                           decoration: BoxDecoration(
-                              color: Color(0xffEFF2F7),
+                              color: const Color(0xffEFF2F7),
                               borderRadius: BorderRadius.circular(40)),
-                          child: Text("Office work"),
+                          child: const Text("Office work"),
                         ),
                         Container(
-                          margin: EdgeInsets.only(right: 10),
-                          padding: EdgeInsets.all(10),
+                          margin: const EdgeInsets.only(right: 10),
+                          padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                              color: Color(0xffEFF2F7),
+                              color: const Color(0xffEFF2F7),
                               borderRadius: BorderRadius.circular(40)),
-                          child: Text("Urlaub"),
+                          child: const Text("Urlaub"),
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12,
                     ),
                     Row(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(right: 10),
-                          padding: EdgeInsets.all(15),
+                          margin: const EdgeInsets.only(right: 10),
+                          padding: const EdgeInsets.all(15),
                           decoration: BoxDecoration(
-                              color: Color(0xffEFF2F7),
+                              color: const Color(0xffEFF2F7),
                               borderRadius: BorderRadius.circular(40)),
-                          child: Text("Festival"),
+                          child: const Text("Festival"),
                         ),
                         Container(
-                          margin: EdgeInsets.only(right: 10),
-                          padding: EdgeInsets.all(10),
+                          margin: const EdgeInsets.only(right: 10),
+                          padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                              color: Color(0xffEFF2F7),
+                              color: const Color(0xffEFF2F7),
                               borderRadius: BorderRadius.circular(40)),
-                          child: Text("Urlaub"),
+                          child: const Text("Urlaub"),
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                   ],
@@ -270,15 +266,15 @@ class _BesucheState extends State<Besuche> {
     return Container(
       width: size.width,
       padding: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
-      margin: EdgeInsets.only(bottom: 20),
-      decoration: BoxDecoration(
-        color: appColors.white,
+      margin: const EdgeInsets.only(bottom: 20),
+      decoration: const BoxDecoration(
+        color: AppColors.white,
         boxShadow: [
           BoxShadow(
               spreadRadius: 3,
               blurRadius: 10,
               offset: Offset(0, 2),
-              color: appColors.grey)
+              color: AppColors.grey)
         ],
       ),
       child: Column(
@@ -289,15 +285,15 @@ class _BesucheState extends State<Besuche> {
             children: [
               Container(
                 width: size.width / 2.8,
-                padding:
-                    EdgeInsets.only(left: 10, right: 10, bottom: 8, top: 8),
+                padding: const EdgeInsets.only(
+                    left: 10, right: 10, bottom: 8, top: 8),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  color: Color(0xFFF5EBF0),
+                  color: const Color(0xFFF5EBF0),
                 ),
                 child: Center(
                   child: Row(
-                    children: [
+                    children: const [
                       Icon(
                         Icons.calendar_month,
                         size: 20,
@@ -314,20 +310,20 @@ class _BesucheState extends State<Besuche> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               Container(
                 width: size.width / 2.8,
-                padding:
-                    EdgeInsets.only(left: 10, right: 10, bottom: 8, top: 8),
+                padding: const EdgeInsets.only(
+                    left: 10, right: 10, bottom: 8, top: 8),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  color: Color(0xFFF5EBF0),
+                  color: const Color(0xFFF5EBF0),
                 ),
                 child: Center(
                   child: Row(
-                    children: [
+                    children: const [
                       Icon(
                         Icons.calendar_month,
                         size: 20,
@@ -346,12 +342,12 @@ class _BesucheState extends State<Besuche> {
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           RichText(
-              text: TextSpan(
-            style: TextStyle(color: appColors.black),
+              text: const TextSpan(
+            style: TextStyle(color: AppColors.black),
             children: [
               TextSpan(
                   text: "Besuch: ",

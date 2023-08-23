@@ -10,7 +10,7 @@ class AuthController{
     var token = prefe.getString("token"); 
     var userId = prefe.getString("user_id");
 
-    return await http.get(Uri.parse(AppConfig.PROFILE+"$userId"),
+    return await http.get(Uri.parse("${AppConfig.PROFILE}$userId"),
       headers: {
         "Authorization" : "Bearer $token"
       }

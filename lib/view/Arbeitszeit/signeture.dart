@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:hilfedienst/app_theme.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
@@ -27,8 +26,8 @@ class _SignetureState extends State<Signeture> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(70),
+      appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(70),
           child: Appbar(
             text: "Unterschrift zum Ausfüllen",
           )),
@@ -37,13 +36,13 @@ class _SignetureState extends State<Signeture> {
           children: [
             Container(
               width: size.width,
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
+              padding: const EdgeInsets.all(20),
+              decoration: const BoxDecoration(
                 color: Color(0xffEFF2F7),
               ),
               child: Column(
                 children: [
-                  Center(
+                  const Center(
                     child: Text(
                       "Draw your signature below",
                       style: TextStyle(
@@ -52,15 +51,15 @@ class _SignetureState extends State<Signeture> {
                           fontSize: 16),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  Container(
+                  SizedBox(
                     height: 200,
                     child: DottedBorder(
                         color: Colors.grey,
                         strokeWidth: 1,
-                        dashPattern: [5, 10],
+                        dashPattern: const [5, 10],
                         child: SfSignaturePad(
                           key: signatureGlobalKey,
                         )),
@@ -72,25 +71,25 @@ class _SignetureState extends State<Signeture> {
                         print("object");
                         signatureGlobalKey.currentState?.clear();
                       },
-                      child: Text("Clear"),
+                      child: const Text("Clear"),
                     ),
                   )
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
-            Center(
+            const Center(
               child: Text(
                 "OR",
                 style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.bold,
-                    color: appColors.black),
+                    color: AppColors.black),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             InkWell(
@@ -99,15 +98,15 @@ class _SignetureState extends State<Signeture> {
                 width: 200,
                 height: 60,
                 decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: appColors.mainColor),
+                  border: Border.all(width: 1, color: AppColors.mainColor),
                   borderRadius: BorderRadius.circular(3),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Icon(
                       Icons.attachment,
-                      color: appColors.mainColor,
+                      color: AppColors.mainColor,
                     ),
                     SizedBox(
                       width: 10,
@@ -116,20 +115,20 @@ class _SignetureState extends State<Signeture> {
                       "Attachments",
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          color: appColors.mainColor,
+                          color: AppColors.mainColor,
                           fontSize: 17),
                     )
                   ],
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
               width: size.width,
-              padding: EdgeInsets.only(top: 10, bottom: 10),
-              margin: EdgeInsets.only(left: 40, right: 40),
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
+              margin: const EdgeInsets.only(left: 40, right: 40),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 color: Colors.white,
@@ -138,17 +137,17 @@ class _SignetureState extends State<Signeture> {
                     color: Colors.grey.shade200,
                     blurRadius: 10,
                     spreadRadius: 2,
-                    offset: Offset(0, 2),
+                    offset: const Offset(0, 2),
                   )
                 ],
               ),
               child: ListTile(
-                title: Text("Signature file name"),
+                title: const Text("Signature file name"),
                 leading: Image.network(
                     "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/XXXTentacion_signature.svg/1035px-XXXTentacion_signature.svg.png"),
                 trailing: IconButton(
                   onPressed: () {},
-                  icon: Icon(Icons.close),
+                  icon: const Icon(Icons.close),
                 ),
               ),
             )
@@ -157,12 +156,12 @@ class _SignetureState extends State<Signeture> {
       ),
       bottomNavigationBar: Container(
         height: 60,
-        margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+        margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
         decoration: BoxDecoration(
-          color: appColors.mainColor,
+          color: AppColors.mainColor,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Center(
+        child: const Center(
           child: Text(
             "Confirm signature & Complete",
             style: TextStyle(fontSize: 18, color: Colors.white),

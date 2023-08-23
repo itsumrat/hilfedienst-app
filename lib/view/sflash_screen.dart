@@ -1,10 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:hilfedienst/app_config.dart';
+import 'package:get/get.dart';
 import 'package:hilfedienst/app_theme.dart';
 import 'package:hilfedienst/view/login.dart';
-import 'package:sizer/sizer.dart';
-import 'package:get/get.dart';
 
 class SflashScreen extends StatefulWidget {
   const SflashScreen({Key? key}) : super(key: key);
@@ -18,8 +16,8 @@ class _SflashScreenState extends State<SflashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Future.delayed(Duration(milliseconds: 2000)).then((value) => Get.to(
-          Login(),
+    Future.delayed(const Duration(milliseconds: 2000)).then((value) => Get.to(
+          () => const Login(),
           transition: Transition.zoom,
         ));
   }
@@ -31,8 +29,8 @@ class _SflashScreenState extends State<SflashScreen> {
       body: Container(
         width: size.width,
         height: size.height,
-        decoration: BoxDecoration(
-          color: appColors.mainColor,
+        decoration: const BoxDecoration(
+          color: AppColors.mainColor,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

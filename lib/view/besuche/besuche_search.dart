@@ -17,14 +17,14 @@ class _BesucheSearchState extends State<BesucheSearch> {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () => Get.back(),
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
-            color: appColors.black,
+            color: AppColors.black,
           ),
         ),
         title: TextFormField(
           autofocus: true,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               hintText: "Search",
               border: OutlineInputBorder(borderSide: BorderSide.none)),
         ),

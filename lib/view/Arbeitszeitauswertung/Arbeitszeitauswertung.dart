@@ -14,13 +14,13 @@ class _ArbeitszeitauswertungState extends State<Arbeitszeitauswertung> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(70),
+      appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(70),
           child: Appbar(
             text: "Arbeitszeitauswertung",
           )),
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(left: 20, right: 20),
+        padding: const EdgeInsets.only(left: 20, right: 20),
         child: Column(children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,12 +30,12 @@ class _ArbeitszeitauswertungState extends State<Arbeitszeitauswertung> {
                 child: Container(
                   width: size.width / 1.9,
                   height: 40,
-                  padding: EdgeInsets.only(left: 10, right: 10),
-                  decoration: BoxDecoration(color: Color(0xffEFF2F7)),
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  decoration: const BoxDecoration(color: Color(0xffEFF2F7)),
                   child: Center(
                       child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: const [
                       Text(
                         "September 2022",
                         style: TextStyle(
@@ -53,22 +53,22 @@ class _ArbeitszeitauswertungState extends State<Arbeitszeitauswertung> {
               ),
               TextButton(
                 onPressed: () {},
-                child: Text("Show current"),
+                child: const Text("Show current"),
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Container(
             width: size.width,
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                    offset: Offset(0, 2),
+                    offset: const Offset(0, 2),
                     color: Colors.grey.shade200,
                     blurRadius: 10,
                     spreadRadius: 2)
@@ -81,26 +81,26 @@ class _ArbeitszeitauswertungState extends State<Arbeitszeitauswertung> {
               buildAlignText(size, "Urlaubstage für 2021:", "20"),
             ]),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Container(
+          SizedBox(
               width: size.width,
               child: ListView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: 50,
                   itemBuilder: (context, index) {
                     return Container(
                       width: size.width,
-                      margin: EdgeInsets.only(bottom: 20),
-                      padding: EdgeInsets.all(10),
+                      margin: const EdgeInsets.only(bottom: 20),
+                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
-                              offset: Offset(0, 2),
+                              offset: const Offset(0, 2),
                               color: Colors.grey.shade200,
                               blurRadius: 10,
                               spreadRadius: 2)
@@ -110,24 +110,24 @@ class _ArbeitszeitauswertungState extends State<Arbeitszeitauswertung> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               "Woche 35",
                               style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.w600),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Container(
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                   left: 20, right: 20, top: 10, bottom: 10),
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Color(0xffEBEDF0),
                               ),
                               child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  children: [
+                                  children: const [
                                     SizedBox(
                                       width: 50,
                                       child: Text(
@@ -149,9 +149,9 @@ class _ArbeitszeitauswertungState extends State<Arbeitszeitauswertung> {
                                   ]),
                             ),
                             Container(
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                   left: 20, right: 20, top: 10, bottom: 10),
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Color(0xffF5F7FA),
                               ),
                               child: Row(
@@ -173,7 +173,7 @@ class _ArbeitszeitauswertungState extends State<Arbeitszeitauswertung> {
                                     SizedBox(
                                       width: 50,
                                       child: Row(
-                                        children: [
+                                        children: const [
                                           Icon(
                                             Icons.arrow_downward_outlined,
                                             color: Colors.red,
@@ -208,17 +208,17 @@ class _ArbeitszeitauswertungState extends State<Arbeitszeitauswertung> {
           SizedBox(
             width: size.width / 2,
             child: Text(
-              "$title",
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+              title,
+              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
             ),
           ),
           SizedBox(
             width: size.width / 3,
             child: Text(
-              "$subTitle",
+              subTitle,
               overflow: TextOverflow.clip,
               textAlign: TextAlign.end,
-              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
+              style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
             ),
           ),
         ],

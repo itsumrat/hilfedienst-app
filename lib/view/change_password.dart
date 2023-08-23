@@ -14,71 +14,71 @@ class _ChangePasswordState extends State<ChangePassword> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(70),
+      appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(70),
           child: Appbar(
             text: "Change Password",
           )),
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(left: 20, right: 20),
+        padding: const EdgeInsets.only(left: 20, right: 20),
         child: Form(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Text("New Password",
+                const Text("New Password",
                     style:
                         TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
                   obscureText: true,
                   decoration: InputDecoration(
                       filled: true,
-                      fillColor: Color(0xffEFF2F7),
+                      fillColor: const Color(0xffEFF2F7),
                       hintText: "......",
-                      contentPadding: EdgeInsets.only(
+                      contentPadding: const EdgeInsets.only(
                         left: 10,
                         right: 10,
                       ),
-                      hintStyle:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                      hintStyle: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 30),
                       border: OutlineInputBorder(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(5),
                       )),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Text("Confirm Password",
+                const Text("Confirm Password",
                     style:
                         TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
                   obscureText: true,
                   decoration: InputDecoration(
                       filled: true,
-                      fillColor: Color(0xffEFF2F7),
+                      fillColor: const Color(0xffEFF2F7),
                       hintText: "......",
-                      contentPadding: EdgeInsets.only(
+                      contentPadding: const EdgeInsets.only(
                         left: 10,
                         right: 10,
                       ),
-                      hintStyle:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                      hintStyle: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 30),
                       border: OutlineInputBorder(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(5),
                       )),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Container(
@@ -86,8 +86,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                   height: 60,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: appColors.mainColor),
-                  child: Center(
+                      color: AppColors.mainColor),
+                  child: const Center(
                       child: Text(
                     "Save",
                     style: TextStyle(fontSize: 16, color: Colors.white),

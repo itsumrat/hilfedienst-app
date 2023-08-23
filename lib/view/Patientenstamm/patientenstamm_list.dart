@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hilfedienst/app_theme.dart';
 import 'package:hilfedienst/view/Patientenstamm/profile_info.dart';
-import 'package:hilfedienst/view/profile.dart';
 
 import '../../json.dart';
 import '../../view_controller/app_bar.dart';
@@ -19,13 +18,13 @@ class _PatientenstammState extends State<Patientenstamm> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(70),
+      appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(70),
           child: Appbar(
             text: "Patientenstamm",
           )),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,9 +34,9 @@ class _PatientenstammState extends State<Patientenstamm> {
               children: [
                 Container(
                     width: size.width / 1.4,
-                    decoration: BoxDecoration(color: Color(0xffEFF2F7)),
+                    decoration: const BoxDecoration(color: Color(0xffEFF2F7)),
                     child: TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           contentPadding: EdgeInsets.only(
                             left: 10,
                             right: 10,
@@ -60,15 +59,15 @@ class _PatientenstammState extends State<Patientenstamm> {
                   child: Container(
                     width: 50,
                     height: 49,
-                    decoration: BoxDecoration(color: Color(0xffEFF2F7)),
-                    child: Center(
+                    decoration: const BoxDecoration(color: Color(0xffEFF2F7)),
+                    child: const Center(
                       child: Icon(Icons.filter_list_outlined),
                     ),
                   ),
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Text(
@@ -78,7 +77,7 @@ class _PatientenstammState extends State<Patientenstamm> {
                   fontSize: 17,
                   color: Colors.grey.shade400),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Expanded(
@@ -86,10 +85,11 @@ class _PatientenstammState extends State<Patientenstamm> {
                 itemCount: Jsons.json.length,
                 itemBuilder: (_, index) {
                   return Container(
-                    margin: EdgeInsets.only(bottom: 30),
+                    margin: const EdgeInsets.only(bottom: 30),
                     child: ListTile(
                       onTap: () => Get.to(
-                          SingleProfile(name: "${Jsons.json[index]["name"]}"),
+                          () => SingleProfile(
+                              name: "${Jsons.json[index]["name"]}"),
                           transition: Transition.downToUp),
                       title: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -97,17 +97,17 @@ class _PatientenstammState extends State<Patientenstamm> {
                         children: [
                           Text(
                             "${Jsons.json[index]["name"]}",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 19, fontWeight: FontWeight.w600),
                           ),
                           Text(
                             "Klient-Nr: ${Jsons.json[index]["client_no"]}",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 17, fontWeight: FontWeight.w400),
                           ),
                           Text(
                             "Last care date: ${Jsons.json[index]["date"]}",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 17, fontWeight: FontWeight.w400),
                           )
                         ],
@@ -116,12 +116,12 @@ class _PatientenstammState extends State<Patientenstamm> {
                         width: 50,
                         height: 50,
                         decoration: BoxDecoration(
-                            color: appColors.mainColor.withOpacity(0.3),
+                            color: AppColors.mainColor.withOpacity(0.3),
                             borderRadius: BorderRadius.circular(100)),
                         child: Center(
                           child: Text(
-                            "${index}",
-                            style: TextStyle(
+                            "$index",
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600),
@@ -135,7 +135,7 @@ class _PatientenstammState extends State<Patientenstamm> {
                           borderRadius: BorderRadius.circular(100),
                           color: Colors.grey.shade300,
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Icon(
                             Icons.arrow_forward_ios,
                             size: 20,
@@ -156,7 +156,7 @@ class _PatientenstammState extends State<Patientenstamm> {
   void ShwoFillter() {
     showModalBottomSheet(
         context: context,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
         ),
@@ -165,11 +165,11 @@ class _PatientenstammState extends State<Patientenstamm> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
+              const Padding(
+                padding: EdgeInsets.all(20.0),
                 child: Text(
                   "Short By",
                   style: TextStyle(
@@ -179,22 +179,22 @@ class _PatientenstammState extends State<Patientenstamm> {
                 ),
               ),
               ListTile(
-                leading: new Icon(Icons.list),
-                title: new Text('Default'),
+                leading: const Icon(Icons.list),
+                title: const Text('Default'),
                 onTap: () {
                   Navigator.pop(context);
                 },
               ),
               ListTile(
-                leading: new Icon(Icons.list_alt),
-                title: new Text('A to Z'),
+                leading: const Icon(Icons.list_alt),
+                title: const Text('A to Z'),
                 onTap: () {
                   Navigator.pop(context);
                 },
               ),
               ListTile(
-                leading: new Icon(Icons.list_alt),
-                title: new Text('Z to A'),
+                leading: const Icon(Icons.list_alt),
+                title: const Text('Z to A'),
                 onTap: () {
                   Navigator.pop(context);
                 },

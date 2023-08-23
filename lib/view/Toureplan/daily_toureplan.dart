@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:hilfedienst/app_config.dart';
-import 'package:hilfedienst/app_theme.dart';
-import 'package:hilfedienst/view/Toureplan/weekly_toureplan.dart';
 
-import '../../view_controller/app_bar.dart';
 
 class DailyToureplan extends StatefulWidget {
   const DailyToureplan({super.key});
@@ -44,9 +39,9 @@ class _DailyToureplanState extends State<DailyToureplan> {
       children: [
         Container(
           width: size.width,
-          padding: EdgeInsets.only(left: 14, right: 14, bottom: 20, top: 20),
+          padding: const EdgeInsets.only(left: 14, right: 14, bottom: 20, top: 20),
           decoration: BoxDecoration(
-              color: Color(0xffA71D2A),
+              color: const Color(0xffA71D2A),
               borderRadius: BorderRadius.circular(10)),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -57,13 +52,13 @@ class _DailyToureplanState extends State<DailyToureplan> {
                   children: [
                     Container(
                       width: 125,
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                           left: 10, right: 10, top: 5, bottom: 5),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(100)),
                       child: Row(
-                        children: [
+                        children: const [
                           Icon(Icons.watch_later_outlined),
                           Text("7:00 - 8:00 "),
                         ],
@@ -75,43 +70,43 @@ class _DailyToureplanState extends State<DailyToureplan> {
                       decoration: BoxDecoration(
                           color: Colors.amber,
                           borderRadius: BorderRadius.circular(100)),
-                      child: Center(child: Text("2")),
+                      child: const Center(child: Text("2")),
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Text(
+                const Text(
                   "Helene Fischer",
                   style: TextStyle(
                       fontSize: 16,
                       color: Colors.white,
                       fontWeight: FontWeight.w600),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 7,
                 ),
-                Text(
+                const Text(
                   "67112 Mutterstadt Blockfeld 4",
                   style: TextStyle(
                       fontSize: 16,
                       color: Colors.white,
                       fontWeight: FontWeight.w400),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 7,
                 ),
                 Row(
                   children: [
-                    Text(
+                    const Text(
                       "Ausfall",
                       style: TextStyle(
                           fontSize: 16,
                           color: Colors.white,
                           fontWeight: FontWeight.w400),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Container(
@@ -119,10 +114,10 @@ class _DailyToureplanState extends State<DailyToureplan> {
                       width: 2,
                       color: Colors.white,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
-                    Text(
+                    const Text(
                       "Admin",
                       style: TextStyle(
                           fontSize: 16,
@@ -133,14 +128,14 @@ class _DailyToureplanState extends State<DailyToureplan> {
                 )
               ]),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Container(
           width: size.width,
-          padding: EdgeInsets.only(left: 14, right: 14, bottom: 20, top: 20),
+          padding: const EdgeInsets.only(left: 14, right: 14, bottom: 20, top: 20),
           decoration: BoxDecoration(
-              color: Color(0xff008000),
+              color: const Color(0xff008000),
               borderRadius: BorderRadius.circular(10)),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -150,13 +145,13 @@ class _DailyToureplanState extends State<DailyToureplan> {
                   children: [
                     Container(
                       width: 125,
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                           left: 10, right: 10, top: 5, bottom: 5),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(100)),
                       child: Row(
-                        children: [
+                        children: const [
                           Icon(Icons.watch_later_outlined),
                           Text("7:00 - 8:00 "),
                         ],
@@ -164,39 +159,39 @@ class _DailyToureplanState extends State<DailyToureplan> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Text(
+                const Text(
                   "Helene Fischer",
                   style: TextStyle(
                       fontSize: 16,
                       color: Colors.white,
                       fontWeight: FontWeight.w600),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 7,
                 ),
-                Text(
+                const Text(
                   "67112 Mutterstadt Blockfeld 4",
                   style: TextStyle(
                       fontSize: 16,
                       color: Colors.white,
                       fontWeight: FontWeight.w400),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 7,
                 ),
                 Row(
                   children: [
-                    Text(
+                    const Text(
                       "Einmalig",
                       style: TextStyle(
                           fontSize: 16,
                           color: Color(0xffFFFF00),
                           fontWeight: FontWeight.w400),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Container(
@@ -204,10 +199,10 @@ class _DailyToureplanState extends State<DailyToureplan> {
                       width: 2,
                       color: Colors.white,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
-                    Text(
+                    const Text(
                       "Admin",
                       style: TextStyle(
                           fontSize: 16,

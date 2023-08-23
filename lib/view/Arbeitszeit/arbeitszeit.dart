@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hilfedienst/app_theme.dart';
 import 'package:hilfedienst/patient_json.dart';
-import 'package:hilfedienst/view/index.dart';
 import 'package:hilfedienst/view_controller/title_text.dart';
 
 import 'Patient_info.dart';
@@ -15,12 +14,11 @@ class Arbeitszeit extends StatefulWidget {
 }
 
 class _ArbeitszeitState extends State<Arbeitszeit> {
-  var Patient;
+  late String patient;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    Patient = "Patient name";
+    patient = "Patient name";
   }
 
   @override
@@ -29,53 +27,53 @@ class _ArbeitszeitState extends State<Arbeitszeit> {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              TitleText(text: "Meine Arbeitszeit"),
-              SizedBox(
+              const TitleText(text: "Meine Arbeitszeit"),
+              const SizedBox(
                 height: 20,
               ),
               Container(
                 width: size.width,
                 padding: const EdgeInsets.only(
                     left: 20, right: 20, top: 20, bottom: 20),
-                decoration: BoxDecoration(
-                  color: appColors.white,
+                decoration: const BoxDecoration(
+                  color: AppColors.white,
                   boxShadow: [
                     BoxShadow(
                         spreadRadius: 3,
                         blurRadius: 10,
                         offset: Offset(0, 2),
-                        color: appColors.grey)
+                        color: AppColors.grey)
                   ],
                 ),
                 child: Column(
                   children: [
                     buildAlignText(size, "Today", "Thu, 29 Sep 2022"),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     buildAlignText(size, "Time", "9:00 PM"),
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Text(
+              const Text(
                 "Select Patient",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 22,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               InkWell(
@@ -84,41 +82,41 @@ class _ArbeitszeitState extends State<Arbeitszeit> {
                   _showMyDialog();
                 },
                 child: Container(
-                  color: Color(0xFFEFF2F7),
+                  color: const Color(0xFFEFF2F7),
                   child: ListTile(
                     title: Text(
-                      "$Patient",
-                      style: TextStyle(fontSize: 17),
+                      patient,
+                      style: const TextStyle(fontSize: 17),
                     ),
                     leading: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: appColors.white,
+                        color: AppColors.white,
                       ),
-                      padding: EdgeInsets.all(10),
-                      child: Icon(
+                      padding: const EdgeInsets.all(10),
+                      child: const Icon(
                         Icons.person,
-                        color: appColors.black,
+                        color: AppColors.black,
                       ),
                     ),
-                    trailing: Icon(
+                    trailing: const Icon(
                       Icons.arrow_drop_down_outlined,
-                      color: appColors.black,
+                      color: AppColors.black,
                     ),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Text(
+              const Text(
                 "Select Care Duration",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 18,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -127,54 +125,54 @@ class _ArbeitszeitState extends State<Arbeitszeit> {
                   SizedBox(
                     width: size.width / 3.8,
                     child: ElevatedButton(
-                        onPressed: () => Get.offAll(PatinetInfo(),
+                        onPressed: () => Get.offAll(const PatinetInfo(),
                             transition: Transition.rightToLeft),
                         style: ButtonStyle(
                             backgroundColor:
-                                MaterialStateProperty.all(appColors.white)),
-                        child: Text(
+                                MaterialStateProperty.all(AppColors.white)),
+                        child: const Text(
                           "1.5",
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              color: appColors.black),
+                              color: AppColors.black),
                         )),
                   ),
                   SizedBox(
                     width: size.width / 3.8,
                     child: ElevatedButton(
-                        onPressed: () => Get.offAll(PatinetInfo(),
+                        onPressed: () => Get.offAll(const PatinetInfo(),
                             transition: Transition.rightToLeft),
                         style: ButtonStyle(
                             backgroundColor:
-                                MaterialStateProperty.all(appColors.white)),
-                        child: Text(
+                                MaterialStateProperty.all(AppColors.white)),
+                        child: const Text(
                           "2",
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              color: appColors.black),
+                              color: AppColors.black),
                         )),
                   ),
                   SizedBox(
                     width: size.width / 3.8,
                     child: ElevatedButton(
-                        onPressed: () => Get.offAll(PatinetInfo(),
+                        onPressed: () => Get.offAll(const PatinetInfo(),
                             transition: Transition.rightToLeft),
                         style: ButtonStyle(
                             backgroundColor:
-                                MaterialStateProperty.all(appColors.white)),
-                        child: Text(
+                                MaterialStateProperty.all(AppColors.white)),
+                        child: const Text(
                           "2.5",
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              color: appColors.black),
+                              color: AppColors.black),
                         )),
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
@@ -183,49 +181,49 @@ class _ArbeitszeitState extends State<Arbeitszeit> {
                   SizedBox(
                     width: size.width / 3.8,
                     child: ElevatedButton(
-                        onPressed: () => Get.offAll(PatinetInfo(),
+                        onPressed: () => Get.offAll(const PatinetInfo(),
                             transition: Transition.rightToLeft),
                         style: ButtonStyle(
                             backgroundColor:
-                                MaterialStateProperty.all(appColors.white)),
-                        child: Text(
+                                MaterialStateProperty.all(AppColors.white)),
+                        child: const Text(
                           "3",
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              color: appColors.black),
+                              color: AppColors.black),
                         )),
                   ),
                   SizedBox(
                     width: size.width / 3.8,
                     child: ElevatedButton(
-                        onPressed: () => Get.offAll(PatinetInfo(),
+                        onPressed: () => Get.offAll(const PatinetInfo(),
                             transition: Transition.rightToLeft),
                         style: ButtonStyle(
                             backgroundColor:
-                                MaterialStateProperty.all(appColors.white)),
-                        child: Text(
+                                MaterialStateProperty.all(AppColors.white)),
+                        child: const Text(
                           "3.5",
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              color: appColors.black),
+                              color: AppColors.black),
                         )),
                   ),
                   SizedBox(
                     width: size.width / 3.8,
                     child: ElevatedButton(
-                        onPressed: () => Get.offAll(PatinetInfo(),
+                        onPressed: () => Get.offAll(const PatinetInfo(),
                             transition: Transition.rightToLeft),
                         style: ButtonStyle(
                             backgroundColor:
-                                MaterialStateProperty.all(appColors.white)),
-                        child: Text(
+                                MaterialStateProperty.all(AppColors.white)),
+                        child: const Text(
                           "4",
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              color: appColors.black),
+                              color: AppColors.black),
                         )),
                   )
                 ],
@@ -251,17 +249,17 @@ class _ArbeitszeitState extends State<Arbeitszeit> {
           SizedBox(
             width: size.width / 2.5,
             child: Text(
-              "$title",
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+              title,
+              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
             ),
           ),
           SizedBox(
             width: size.width / 3,
             child: Text(
-              "$subTitle",
+              subTitle,
               overflow: TextOverflow.clip,
               textAlign: TextAlign.end,
-              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
+              style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
             ),
           ),
         ],
@@ -275,13 +273,13 @@ class _ArbeitszeitState extends State<Arbeitszeit> {
       barrierDismissible: true, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          content: Container(
+          content: SizedBox(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
                 TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       hintText: "Search Patient",
                       border: OutlineInputBorder(
                         borderSide: BorderSide.none,
@@ -291,7 +289,7 @@ class _ArbeitszeitState extends State<Arbeitszeit> {
                       prefixIcon: Icon(Icons.search),
                       contentPadding: EdgeInsets.only(left: 10, right: 10)),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Expanded(
@@ -305,7 +303,7 @@ class _ArbeitszeitState extends State<Arbeitszeit> {
                           TextButton(
                               onPressed: () {
                                 setState(() {
-                                  Patient = PatientJson.patients[index];
+                                  patient = PatientJson.patients[index];
                                 });
                                 Navigator.pop(context);
                               },

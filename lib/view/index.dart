@@ -11,18 +11,18 @@ import 'besuche/besuche.dart';
 
 class Index extends StatefulWidget {
   final int? index;
-  Index({this.index = 0});
+  const Index({super.key, this.index = 0});
   @override
   State<Index> createState() => _IndexState();
 }
 
 class _IndexState extends State<Index> {
   List pages = [
-    Home(),
-    Arbeitszeit(),
-    Besuche(),
-    Menu(),
-    PatinetInfo(),
+    const Home(),
+    const Arbeitszeit(),
+    const Besuche(),
+    const Menu(),
+    const PatinetInfo(),
   ];
 
   int currentPage = 0;
@@ -41,13 +41,13 @@ class _IndexState extends State<Index> {
     // TODO: implement initState
     super.initState();
     checkIndex();
-    print("index page ${currentPage}");
+    print("index page $currentPage");
     titleCheck();
     isHome = true;
     isArbeitszeit = false;
     isBesuche = false;
     isMehr = false;
-    print("isArbeitszeit ${isArbeitszeit}");
+    print("isArbeitszeit $isArbeitszeit");
   }
 
   bool isHome = false;
@@ -108,64 +108,71 @@ class _IndexState extends State<Index> {
       body: pages[currentPage],
       bottomNavigationBar: CurvedNavigationBar(
         height: 75.0,
-        backgroundColor: appColors.white,
-        color: appColors.mainColor,
-        buttonBackgroundColor: appColors.mainColor,
+        backgroundColor: AppColors.white,
+        color: AppColors.mainColor,
+        buttonBackgroundColor: AppColors.mainColor,
         items: <Widget>[
           Container(
-            margin: isHome ? EdgeInsets.only(top: 0) : EdgeInsets.only(top: 20),
+            margin: isHome
+                ? const EdgeInsets.only(top: 0)
+                : const EdgeInsets.only(top: 20),
             child: Column(
               children: [
-                Icon(
+                const Icon(
                   Icons.home,
                   size: 30,
-                  color: appColors.white,
+                  color: AppColors.white,
                 ),
-                isHome ? SizedBox.shrink() : buildBottomMenuText("Home"),
+                isHome ? const SizedBox.shrink() : buildBottomMenuText("Home"),
               ],
             ),
           ),
           Container(
             margin: isArbeitszeit
-                ? EdgeInsets.only(top: 0)
-                : EdgeInsets.only(top: 20),
+                ? const EdgeInsets.only(top: 0)
+                : const EdgeInsets.only(top: 20),
             child: Column(
               children: [
-                Icon(
+                const Icon(
                   Icons.watch_later,
                   size: 30,
-                  color: appColors.white,
+                  color: AppColors.white,
                 ),
                 isArbeitszeit
-                    ? SizedBox.shrink()
+                    ? const SizedBox.shrink()
                     : buildBottomMenuText("Arbeitszeit"),
               ],
             ),
           ),
           Container(
-            margin:
-                isBesuche ? EdgeInsets.only(top: 0) : EdgeInsets.only(top: 20),
+            margin: isBesuche
+                ? const EdgeInsets.only(top: 0)
+                : const EdgeInsets.only(top: 20),
             child: Column(
               children: [
-                Icon(
+                const Icon(
                   FontAwesomeIcons.globe,
                   size: 30,
-                  color: appColors.white,
+                  color: AppColors.white,
                 ),
-                isBesuche ? SizedBox.shrink() : buildBottomMenuText("Besuche"),
+                isBesuche
+                    ? const SizedBox.shrink()
+                    : buildBottomMenuText("Besuche"),
               ],
             ),
           ),
           Container(
-            margin: isMehr ? EdgeInsets.only(top: 0) : EdgeInsets.only(top: 20),
+            margin: isMehr
+                ? const EdgeInsets.only(top: 0)
+                : const EdgeInsets.only(top: 20),
             child: Column(
               children: [
-                Icon(
+                const Icon(
                   Icons.menu,
                   size: 30,
-                  color: appColors.white,
+                  color: AppColors.white,
                 ),
-                isMehr ? SizedBox.shrink() : buildBottomMenuText("Mehr"),
+                isMehr ? const SizedBox.shrink() : buildBottomMenuText("Mehr"),
               ],
             ),
           ),
@@ -184,7 +191,8 @@ class _IndexState extends State<Index> {
   Text buildBottomMenuText(title) {
     return Text(
       "$title",
-      style: TextStyle(fontWeight: FontWeight.w600, color: appColors.white),
+      style:
+          const TextStyle(fontWeight: FontWeight.w600, color: AppColors.white),
     );
   }
 }

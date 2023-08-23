@@ -4,7 +4,6 @@ import 'package:hilfedienst/app_theme.dart';
 import 'package:hilfedienst/view/Arbeitszeit/signeture.dart';
 import 'package:hilfedienst/view/index.dart';
 import 'package:hilfedienst/view_controller/title_text.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 
 class PatinetInfo extends StatefulWidget {
@@ -22,7 +21,6 @@ class _PatinetInfoState extends State<PatinetInfo> {
   bool _isStart = false;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -39,78 +37,78 @@ class _PatinetInfoState extends State<PatinetInfo> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: appColors.white,
+          backgroundColor: AppColors.white,
           leading: IconButton(
             onPressed: () {
               Get.to(
-                  Index(
-                    index: 1,
-                  ),
+                  () => const Index(
+                        index: 1,
+                      ),
                   transition: Transition.rightToLeft);
               print("click");
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios,
-              color: appColors.black,
+              color: AppColors.black,
             ),
           ),
         ),
         body: SingleChildScrollView(
-          padding: EdgeInsets.only(left: 20, right: 20),
+          padding: const EdgeInsets.only(left: 20, right: 20),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                TitleText(text: "Meine Arbeitszeit"),
-                SizedBox(
+                const TitleText(text: "Meine Arbeitszeit"),
+                const SizedBox(
                   height: 20,
                 ),
                 Container(
                   width: size.width,
                   padding: const EdgeInsets.only(
                       left: 20, right: 20, top: 20, bottom: 20),
-                  decoration: BoxDecoration(
-                    color: appColors.white,
+                  decoration: const BoxDecoration(
+                    color: AppColors.white,
                     boxShadow: [
                       BoxShadow(
                           spreadRadius: 3,
                           blurRadius: 10,
                           offset: Offset(0, 2),
-                          color: appColors.grey)
+                          color: AppColors.grey)
                     ],
                   ),
                   child: Column(
                     children: [
                       buildAlignText(size, "Today", "Thu, 29 Sep 2022"),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       buildAlignText(size, "Time", "9:00 PM"),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       buildAlignText(size, "Duration", "1.5 Hours"),
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Container(
                   width: size.width,
                   padding: const EdgeInsets.only(
                       left: 20, right: 20, top: 20, bottom: 20),
-                  decoration: BoxDecoration(
-                    color: appColors.white,
+                  decoration: const BoxDecoration(
+                    color: AppColors.white,
                     boxShadow: [
                       BoxShadow(
                           spreadRadius: 3,
                           blurRadius: 10,
                           offset: Offset(0, 2),
-                          color: appColors.grey)
+                          color: AppColors.grey)
                     ],
                   ),
                   child: Column(
@@ -118,7 +116,7 @@ class _PatinetInfoState extends State<PatinetInfo> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             "Patient Info",
                             style: TextStyle(
                               fontSize: 18,
@@ -127,11 +125,11 @@ class _PatinetInfoState extends State<PatinetInfo> {
                           ),
                           TextButton(
                             onPressed: () => Get.to(
-                                Index(
-                                  index: 1,
-                                ),
+                                () => const Index(
+                                      index: 1,
+                                    ),
                                 transition: Transition.rightToLeft),
-                            child: Text(
+                            child: const Text(
                               "Change",
                               style: TextStyle(
                                 fontSize: 16,
@@ -141,11 +139,11 @@ class _PatinetInfoState extends State<PatinetInfo> {
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       buildAlignText(size, "Name", "nayon Talukder"),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       buildAlignText(
@@ -153,14 +151,14 @@ class _PatinetInfoState extends State<PatinetInfo> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Container(
                     width: size.width,
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: Color(0xFFEFF2F7),
+                      color: const Color(0xFFEFF2F7),
                       borderRadius: BorderRadius.circular(
                         10,
                       ),
@@ -171,7 +169,7 @@ class _PatinetInfoState extends State<PatinetInfo> {
                           padding: const EdgeInsets.only(left: 30, right: 30),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            children: const [
                               Text(
                                 "Hours",
                                 style: TextStyle(
@@ -199,21 +197,21 @@ class _PatinetInfoState extends State<PatinetInfo> {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         RichText(
-                            text: TextSpan(
+                            text: const TextSpan(
                                 style: TextStyle(
                                     fontSize: 45,
                                     fontWeight: FontWeight.bold,
-                                    color: appColors.black),
+                                    color: AppColors.black),
                                 children: [
                               TextSpan(text: "00 : "),
                               TextSpan(text: "00 : "),
                               TextSpan(text: "00")
                             ])),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         // Row(
@@ -243,10 +241,11 @@ class _PatinetInfoState extends State<PatinetInfo> {
               ]),
         ),
         bottomNavigationBar: Padding(
-          padding: EdgeInsets.only(left: 20, right: 20, bottom: 5),
+          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 5),
           child: InkWell(
             onTap: () {
-              Get.to(Signeture(), transition: Transition.rightToLeft);
+              Get.to(() => const Signeture(),
+                  transition: Transition.rightToLeft);
               print("object");
               setState(() {
                 _isStart = !_isStart;
@@ -258,29 +257,29 @@ class _PatinetInfoState extends State<PatinetInfo> {
                 _stopWatchTimer.onStartTimer();
               }
             },
-            hoverColor: appColors.mainColor.withOpacity(0.1),
+            hoverColor: AppColors.mainColor.withOpacity(0.1),
             child: Container(
               height: 50,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(3),
-                border: Border.all(width: 2, color: appColors.mainColor),
+                border: Border.all(width: 2, color: AppColors.mainColor),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
                     _isStart ? Icons.play_arrow : Icons.stop,
-                    color: appColors.mainColor,
+                    color: AppColors.mainColor,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Text(
                     _isStart ? "Start Booking" : "Stop Booking",
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontWeight: FontWeight.w600,
-                        color: appColors.mainColor,
+                        color: AppColors.mainColor,
                         fontSize: 16),
                   )
                 ],
@@ -302,17 +301,17 @@ class _PatinetInfoState extends State<PatinetInfo> {
           SizedBox(
             width: size.width / 2.5,
             child: Text(
-              "$title",
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+              title,
+              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
             ),
           ),
           SizedBox(
             width: size.width / 3,
             child: Text(
-              "$subTitle",
+              subTitle,
               overflow: TextOverflow.clip,
               textAlign: TextAlign.end,
-              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
+              style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
             ),
           ),
         ],

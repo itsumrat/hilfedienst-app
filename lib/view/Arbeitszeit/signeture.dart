@@ -1,9 +1,14 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:hilfedienst/app_theme.dart';
+import 'package:hilfedienst/utils/signature_key_to_file.dart';
+import 'package:hilfedienst/view/Arbeitszeit/controller/patient_info_controller.dart';
+import 'package:hilfedienst/view/index.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
@@ -22,6 +27,7 @@ class _SignetureState extends State<Signeture> {
   ///image picker
   ///also can pic file
   final ImagePicker _picker = ImagePicker();
+  final controller = Get.find<PatientInfoController>();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -57,18 +63,24 @@ class _SignetureState extends State<Signeture> {
                   SizedBox(
                     height: 200,
                     child: DottedBorder(
-                        color: Colors.grey,
-                        strokeWidth: 1,
-                        dashPattern: const [5, 10],
-                        child: SfSignaturePad(
-                          key: signatureGlobalKey,
-                        )),
+                      color: Colors.grey,
+                      strokeWidth: 1,
+                      dashPattern: const [5, 10],
+                      child: image == null
+                          ? SfSignaturePad(
+                              key: signatureGlobalKey,
+                            )
+                          : Image.file(image!),
+                    ),
                   ),
                   Align(
                     alignment: Alignment.bottomRight,
                     child: TextButton(
                       onPressed: () {
-                        signatureGlobalKey.currentState?.clear();
+                        setState(() {
+                          image = null;
+                          signatureGlobalKey.currentState?.clear();
+                        });
                       },
                       child: const Text("Clear"),
                     ),
@@ -153,17 +165,49 @@ class _SignetureState extends State<Signeture> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        height: 60,
-        margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-        decoration: BoxDecoration(
-          color: AppColors.mainColor,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: const Center(
-          child: Text(
-            "Confirm signature & Complete",
-            style: TextStyle(fontSize: 18, color: Colors.white),
+      bottomNavigationBar: InkWell(
+        onTap: () async {
+          if (signatureGlobalKey.currentState!.toPathList().isEmpty &&
+              image == null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text("Please draw your signature"),
+              ),
+            );
+          } else {
+            File signature = await signatureKeyToFile(signatureGlobalKey);
+            var result =
+                await controller.sendBookingRequest(image: image ?? signature);
+            if (result) {
+              Get.snackbar("Success!", "Booking request sent successfully",
+                  backgroundColor: Colors.green, colorText: Colors.white);
+              Get.offAll(
+                () => const Index(
+                  index: 0,
+                ),
+                transition: Transition.zoom,
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Sorry! Something went wrong."),
+                ),
+              );
+            }
+          }
+        },
+        child: Container(
+          height: 60,
+          margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+          decoration: BoxDecoration(
+            color: AppColors.mainColor,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: const Center(
+            child: Text(
+              "Confirm signature & Complete",
+              style: TextStyle(fontSize: 18, color: Colors.white),
+            ),
           ),
         ),
       ),
@@ -177,6 +221,8 @@ class _SignetureState extends State<Signeture> {
       if (image == null) return;
       final imageTemp = File(image.path);
       setState(() => this.image = imageTemp);
-    } on PlatformException catch (e) {}
+    } on PlatformException catch (e) {
+      log("Failed to pick image: $e");
+    }
   }
 }

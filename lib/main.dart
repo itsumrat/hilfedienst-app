@@ -26,7 +26,11 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          theme: ThemeData(fontFamily: 'Roboto'),
+          theme: ThemeData(
+            fontFamily: 'Roboto',
+            progressIndicatorTheme:
+                const ProgressIndicatorThemeData(color: AppColors.mainColor),
+          ),
           home: const SflashScreen(),
         );
       },

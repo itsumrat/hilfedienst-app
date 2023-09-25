@@ -1,10 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hilfedienst/app_theme.dart';
+import 'package:hilfedienst/view/Arbeitszeit/Patient_info.dart';
 import 'package:hilfedienst/view/Arbeitszeit/controller/arbeitszeit_controller.dart';
+import 'package:hilfedienst/view/Arbeitszeit/controller/patient_info_controller.dart';
 import 'package:hilfedienst/view_controller/title_text.dart';
-
-import 'Patient_info.dart';
+import 'package:intl/intl.dart';
 
 class Arbeitszeit extends StatefulWidget {
   const Arbeitszeit({Key? key}) : super(key: key);
@@ -15,6 +18,7 @@ class Arbeitszeit extends StatefulWidget {
 
 class _ArbeitszeitState extends State<Arbeitszeit> {
   final ArbeitzeitController controller = Get.put(ArbeitzeitController());
+  final hours = const <double>[1.5, 2, 2.5, 3, 3.5, 4];
 
   @override
   Widget build(BuildContext context) {
@@ -50,11 +54,23 @@ class _ArbeitszeitState extends State<Arbeitszeit> {
                 ),
                 child: Column(
                   children: [
-                    buildAlignText(size, "Today", "Thu, 29 Sep 2022"),
+                    // buildAlignText(size, "Today", "Thu, 29 Sep 2022"),
+                    buildAlignText(size, "Today",
+                        DateFormat.yMMMd().format(DateTime.now())),
                     const SizedBox(
                       height: 20,
                     ),
-                    buildAlignText(size, "Time", "9:00 PM"),
+                    StatefulBuilder(builder: (context, setState) {
+                      Timer.periodic(const Duration(seconds: 1), (timer) {
+                        if (mounted) {
+                          setState(() {});
+                        }
+                      });
+                      return buildAlignText(
+                          size,
+                          "Time", // "10:00:00 AM",
+                          DateFormat('hh:mm:ss a').format(DateTime.now()));
+                    }),
                   ],
                 ),
               ),
@@ -81,8 +97,9 @@ class _ArbeitszeitState extends State<Arbeitszeit> {
                     child: ListTile(
                       title: Obx(
                         () => Text(
-                          controller.selectedPatient.value?.firstName ??
-                              "Select Patient",
+                          controller.selectedPatient.value != null
+                              ? "${controller.selectedPatient.value!.firstName} ${controller.selectedPatient.value!.lastName}"
+                              : "Select Patient",
                           style: const TextStyle(fontSize: 17),
                         ),
                       ),
@@ -124,115 +141,53 @@ class _ArbeitszeitState extends State<Arbeitszeit> {
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: size.width / 3.8,
-                    child: ElevatedButton(
-                        onPressed: () => Get.offAll(const PatinetInfo(),
-                            transition: Transition.rightToLeft),
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(AppColors.white)),
-                        child: const Text(
-                          "1.5",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.black),
-                        )),
-                  ),
-                  SizedBox(
-                    width: size.width / 3.8,
-                    child: ElevatedButton(
-                        onPressed: () => Get.offAll(const PatinetInfo(),
-                            transition: Transition.rightToLeft),
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(AppColors.white)),
-                        child: const Text(
-                          "2",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.black),
-                        )),
-                  ),
-                  SizedBox(
-                    width: size.width / 3.8,
-                    child: ElevatedButton(
-                        onPressed: () => Get.offAll(const PatinetInfo(),
-                            transition: Transition.rightToLeft),
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(AppColors.white)),
-                        child: const Text(
-                          "2.5",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.black),
-                        )),
-                  )
-                ],
+              GridView.builder(
+                itemCount: hours.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: 2.5,
+                ),
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return ElevatedButton(
+                    onPressed: () {
+                      if (controller.selectedPatient.value == null) {
+                        Get.snackbar(
+                          "Sorry!",
+                          "Please select patient",
+                          backgroundColor: AppColors.mainColor,
+                          colorText: AppColors.white,
+                        );
+                      } else {
+                        Get.offAll(const PatinetInfo(),
+                            transition: Transition.rightToLeft,
+                            arguments: {
+                              'patient': controller.selectedPatient.value,
+                              'hour': hours[index],
+                            },
+                            binding: BindingsBuilder.put(
+                                () => PatientInfoController()));
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                    child: Text(
+                      hours[index].toString(),
+                      style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.black),
+                    ),
+                  );
+                },
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: size.width / 3.8,
-                    child: ElevatedButton(
-                        onPressed: () => Get.offAll(const PatinetInfo(),
-                            transition: Transition.rightToLeft),
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(AppColors.white)),
-                        child: const Text(
-                          "3",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.black),
-                        )),
-                  ),
-                  SizedBox(
-                    width: size.width / 3.8,
-                    child: ElevatedButton(
-                        onPressed: () => Get.offAll(const PatinetInfo(),
-                            transition: Transition.rightToLeft),
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(AppColors.white)),
-                        child: const Text(
-                          "3.5",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.black),
-                        )),
-                  ),
-                  SizedBox(
-                    width: size.width / 3.8,
-                    child: ElevatedButton(
-                        onPressed: () => Get.offAll(const PatinetInfo(),
-                            transition: Transition.rightToLeft),
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(AppColors.white)),
-                        child: const Text(
-                          "4",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.black),
-                        )),
-                  )
-                ],
-              )
             ],
           ),
         ),
@@ -285,38 +240,45 @@ class _ArbeitszeitState extends State<Arbeitszeit> {
               children: [
                 TextFormField(
                   decoration: const InputDecoration(
-                      hintText: "Search Patient",
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                      ),
-                      filled: true,
-                      fillColor: Color(0xFFEFF2F7),
-                      prefixIcon: Icon(Icons.search),
-                      contentPadding: EdgeInsets.only(left: 10, right: 10)),
+                    hintText: "Search Patient",
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                    ),
+                    filled: true,
+                    fillColor: Color(0xFFEFF2F7),
+                    prefixIcon: Icon(Icons.search),
+                    contentPadding: EdgeInsets.only(left: 10, right: 10),
+                  ),
+                  onChanged: (value) {
+                    controller.searchPatient(value);
+                  },
+                  controller: controller.searchController,
                 ),
                 const SizedBox(
                   height: 25,
                 ),
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: controller.state?.length ?? 0,
-                    itemBuilder: ((context, index) {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TextButton(
-                              onPressed: () {
-                                controller.selectedPatient.value =
-                                    controller.state?[index];
-                                Get.back();
-                              },
-                              child: Text(
-                                  "${controller.state?[index].firstName} ${controller.state?[index].lastName}")),
-                        ],
-                      );
-                    }),
-                  ),
+                  child: GetBuilder<ArbeitzeitController>(builder: (context) {
+                    return ListView.builder(
+                      itemCount: controller.state?.length ?? 0,
+                      itemBuilder: ((context, index) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextButton(
+                                onPressed: () {
+                                  controller.selectedPatient.value =
+                                      controller.state?[index];
+                                  Get.back();
+                                },
+                                child: Text(
+                                    "${controller.state?[index].firstName} ${controller.state?[index].lastName}")),
+                          ],
+                        );
+                      }),
+                    );
+                  }),
                 ),
               ],
             ),

@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AuthController{
   
   //this is profile api controller
-  static Future profileController()async{
+  static Future<http.Response> profileController()async{
     SharedPreferences prefe = await SharedPreferences.getInstance(); 
     var token = prefe.getString("token"); 
     var userId = prefe.getString("user_id");

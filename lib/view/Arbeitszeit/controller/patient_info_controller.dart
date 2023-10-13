@@ -25,7 +25,7 @@ class PatientInfoController extends GetxController {
     return await Get.showOverlay<bool>(
       asyncFunction: () async {
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        var imageBase64Data = base64Encode(image.readAsBytesSync());
+        var imageBase64Data = base64Encode(await image.readAsBytes());
         Map<String, dynamic> body = {
           "report_date": DateFormat("yyyy-MM-dd").format(DateTime.now()),
           "hours": hour,

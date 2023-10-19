@@ -53,9 +53,9 @@ class _BesucheState extends State<Besuche> {
                             decoration: BoxDecoration(
                               color: Colors.grey.shade300,
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Row(
-                                children: const [
+                                children: [
                                   Text(
                                     "September 2022",
                                     style: TextStyle(
@@ -83,9 +83,9 @@ class _BesucheState extends State<Besuche> {
                             decoration: BoxDecoration(
                               color: Colors.grey.shade300,
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Row(
-                                children: const [
+                                children: [
                                   Icon(
                                     Icons.filter_list_outlined,
                                     size: 20,
@@ -291,9 +291,9 @@ class _BesucheState extends State<Besuche> {
                   borderRadius: BorderRadius.circular(100),
                   color: const Color(0xFFF5EBF0),
                 ),
-                child: Center(
+                child: const Center(
                   child: Row(
-                    children: const [
+                    children: [
                       Icon(
                         Icons.calendar_month,
                         size: 20,
@@ -321,9 +321,9 @@ class _BesucheState extends State<Besuche> {
                   borderRadius: BorderRadius.circular(100),
                   color: const Color(0xFFF5EBF0),
                 ),
-                child: Center(
+                child: const Center(
                   child: Row(
-                    children: const [
+                    children: [
                       Icon(
                         Icons.calendar_month,
                         size: 20,

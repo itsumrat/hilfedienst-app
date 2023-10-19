@@ -91,77 +91,77 @@ class _SignetureState extends State<Signeture> {
             const SizedBox(
               height: 40,
             ),
-            const Center(
-              child: Text(
-                "OR",
-                style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.black),
-              ),
-            ),
+            // const Center(
+            //   child: Text(
+            //     "OR",
+            //     style: TextStyle(
+            //         fontSize: 17,
+            //         fontWeight: FontWeight.bold,
+            //         color: AppColors.black),
+            //   ),
+            // ),
             const SizedBox(
               height: 10,
             ),
-            InkWell(
-              onTap: () => uploadFile(),
-              child: Container(
-                width: 200,
-                height: 60,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: AppColors.mainColor),
-                  borderRadius: BorderRadius.circular(3),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
-                      Icons.attachment,
-                      color: AppColors.mainColor,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      "Attachments",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.mainColor,
-                          fontSize: 17),
-                    )
-                  ],
-                ),
-              ),
-            ),
+            // InkWell(
+            //   onTap: () => uploadFile(),
+            //   child: Container(
+            //     width: 200,
+            //     height: 60,
+            //     decoration: BoxDecoration(
+            //       border: Border.all(width: 1, color: AppColors.mainColor),
+            //       borderRadius: BorderRadius.circular(3),
+            //     ),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.center,
+            //       children: const [
+            //         Icon(
+            //           Icons.attachment,
+            //           color: AppColors.mainColor,
+            //         ),
+            //         SizedBox(
+            //           width: 10,
+            //         ),
+            //         Text(
+            //           "Attachments",
+            //           style: TextStyle(
+            //               fontWeight: FontWeight.w600,
+            //               color: AppColors.mainColor,
+            //               fontSize: 17),
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // ),
             const SizedBox(
               height: 20,
             ),
-            Container(
-              width: size.width,
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
-              margin: const EdgeInsets.only(left: 40, right: 40),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.shade200,
-                    blurRadius: 10,
-                    spreadRadius: 2,
-                    offset: const Offset(0, 2),
-                  )
-                ],
-              ),
-              child: ListTile(
-                title: const Text("Signature file name"),
-                leading: Image.network(
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/XXXTentacion_signature.svg/1035px-XXXTentacion_signature.svg.png"),
-                trailing: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.close),
-                ),
-              ),
-            )
+            // Container(
+            //   width: size.width,
+            //   padding: const EdgeInsets.only(top: 10, bottom: 10),
+            //   margin: const EdgeInsets.only(left: 40, right: 40),
+            //   decoration: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(5),
+            //     color: Colors.white,
+            //     boxShadow: [
+            //       BoxShadow(
+            //         color: Colors.grey.shade200,
+            //         blurRadius: 10,
+            //         spreadRadius: 2,
+            //         offset: const Offset(0, 2),
+            //       )
+            //     ],
+            //   ),
+            //   child: ListTile(
+            //     title: const Text("Signature file name"),
+            //     leading: Image.network(
+            //         "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/XXXTentacion_signature.svg/1035px-XXXTentacion_signature.svg.png"),
+            //     trailing: IconButton(
+            //       onPressed: () {},
+            //       icon: const Icon(Icons.close),
+            //     ),
+            //   ),
+            // )
           ],
         ),
       ),
@@ -179,11 +179,11 @@ class _SignetureState extends State<Signeture> {
             var result =
                 await controller.sendBookingRequest(image: image ?? signature);
             if (result) {
-              Get.snackbar("Success!", "Booking request sent successfully",
+              Get.snackbar("Success!", "Booking completed successfully",
                   backgroundColor: Colors.green, colorText: Colors.white);
               Get.offAll(
                 () => const Index(
-                  index: 0,
+                  index: 1,
                 ),
                 transition: Transition.zoom,
               );

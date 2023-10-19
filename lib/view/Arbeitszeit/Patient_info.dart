@@ -48,7 +48,7 @@ class _PatinetInfoState extends State<PatinetInfo> {
             backgroundColor: AppColors.white,
             leading: IconButton(
               onPressed: () {
-                Get.to(
+                Get.off(
                     () => const Index(
                           index: 1,
                         ),

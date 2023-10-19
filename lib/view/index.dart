@@ -25,7 +25,7 @@ class _IndexState extends State<Index> {
     const PatinetInfo(),
   ];
 
-  int currentPage = 0;
+  late int currentPage;
 
   void checkIndex() {
     if (widget.index != 0 && widget.index != null) {
@@ -37,15 +37,15 @@ class _IndexState extends State<Index> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
-    checkIndex();
+    currentPage = widget.index ?? 0;
 
-    titleCheck();
-    isHome = true;
+    isHome = false;
     isArbeitszeit = false;
     isBesuche = false;
     isMehr = false;
+    checkIndex();
+    titleCheck();
+    super.initState();
   }
 
   bool isHome = false;
@@ -107,6 +107,7 @@ class _IndexState extends State<Index> {
         backgroundColor: AppColors.white,
         color: AppColors.mainColor,
         buttonBackgroundColor: AppColors.mainColor,
+        index: currentPage,
         items: <Widget>[
           Container(
             margin: isHome

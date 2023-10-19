@@ -29,9 +29,10 @@ class PatientInfoController extends GetxController {
         Map<String, dynamic> body = {
           "report_date": DateFormat("yyyy-MM-dd").format(DateTime.now()),
           "hours": hour,
-          "patient_id": patientInfo.value?.id,
-          'sign_image': imageBase64Data,
+          "patient_id": patientInfo.value!.id,
+          'sign_image': "data:image/png;base64,$imageBase64Data",
         };
+        print(body);
         var response = await http.post(
           Uri.parse(AppConfig.PATIENTS_BOOKING),
           headers: {

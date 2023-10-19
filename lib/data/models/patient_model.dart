@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
 
 class PatientModel {
   final int id;
@@ -39,7 +38,7 @@ class PatientModel {
       id: map['id'] as int,
       firstName: map['first_name'] as String,
       lastName: map['last_name'] as String,
-      address: map['address'] as String?,
+      address: (map['road'] ?? "") + " " + (map['place'] ?? ""),
     );
   }
   @override
@@ -57,5 +56,6 @@ class PatientModel {
   }
 
   @override
-  int get hashCode => id.hashCode ^ firstName.hashCode ^ lastName.hashCode ^ address.hashCode;
+  int get hashCode =>
+      id.hashCode ^ firstName.hashCode ^ lastName.hashCode ^ address.hashCode;
 }

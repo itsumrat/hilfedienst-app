@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           DeviceType deviceType) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
+          title: 'Hilfedienst',
           theme: ThemeData(
             fontFamily: 'Roboto',
             progressIndicatorTheme:

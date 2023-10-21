@@ -11,6 +11,7 @@ class ArbeitzeitController extends GetxController
     with StateMixin<List<PatientModel>> {
   Rxn<PatientModel> selectedPatient = Rxn<PatientModel>();
   final TextEditingController searchController = TextEditingController();
+  final tempPatientList = <PatientModel>[].obs;
 
   @override
   void onInit() async {
@@ -34,6 +35,8 @@ class ArbeitzeitController extends GetxController
       }
       patients.sort((a, b) => a.lastName.compareTo(b.lastName));
       patients.sort((a, b) => a.firstName.compareTo(b.firstName));
+      tempPatientList.clear();
+      tempPatientList.assignAll(patients);
       change(patients, status: RxStatus.success());
     } else {
       change(null, status: RxStatus.error("Error"));
@@ -43,9 +46,10 @@ class ArbeitzeitController extends GetxController
   void searchPatient(String value) async {
     if (value.isNotEmpty && value == searchController.text) {
       change(
-          state
-              ?.where((element) =>
-                  (element.firstName + element.lastName).contains(value))
+          tempPatientList
+              .where((element) => (element.firstName.toLowerCase() +
+                      element.lastName.toLowerCase())
+                  .contains(value.toLowerCase()))
               .toList(),
           status: RxStatus.success());
     } else {
